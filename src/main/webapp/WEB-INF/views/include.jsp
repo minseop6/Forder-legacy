@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <style>
       #header {
-        height: 100px;
+        height: 10%;
         width: 100%;
         padding: 1rem;
         font-weight: bold;
@@ -25,7 +25,9 @@
       #footer {
         position: fixed;
         bottom: 0;
+        height: 10%;
         width: 100%;
+        justify-content: space-between;
        }
        #title{
          text-align: center;
