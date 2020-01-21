@@ -25,7 +25,7 @@ public class mainConroller {
 		return model;
 	}
 	
-	@GetMapping("/map")
+	@GetMapping(value="/map", produces="text/plain;charset=UTF-8")
 	public ModelAndView map() {
 
 		ModelAndView model = new ModelAndView("map");
