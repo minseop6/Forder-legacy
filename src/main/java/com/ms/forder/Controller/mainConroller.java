@@ -1,13 +1,26 @@
 package com.ms.forder.Controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ms.forder.Domain.Store;
+import com.ms.forder.Service.StoreService;
 
 @Controller
 @RequestMapping("/forder")
-public class mainConroller {
+public class MainConroller {
+	
+	@Autowired
+	StoreService storeService;
 	
 	@GetMapping("")
 	public ModelAndView main() {
@@ -29,6 +42,8 @@ public class mainConroller {
 	public ModelAndView map() {
 
 		ModelAndView model = new ModelAndView("map");
+		List<Store> list = storeService.stores();
+		model.addObject("list", list);
 		
 		return model;
 	}
@@ -41,11 +56,26 @@ public class mainConroller {
 		return model;
 	}
 	
-	@GetMapping("/user")
-	public ModelAndView user() {
+	@GetMapping("/mypage")
+	public ModelAndView user(HttpSession session) {
 
-		ModelAndView model = new ModelAndView("user");
+		String name = (String)session.getAttribute("name");
+		
+		ModelAndView model = new ModelAndView("mypage");
+		if(name != null) {
+			System.out.println("mypage: " + name);
+			model.addObject("session", name);
+		}
 		
 		return model;
+	}
+	
+	@PostMapping("/kakaoLogin")
+	public String kakaoLogin(@RequestParam("name") String name, HttpSession session) throws Exception{
+		
+		System.out.println("kakao user: " + name);
+		session.setAttribute("name", name);
+		
+		return null;
 	}
 }
