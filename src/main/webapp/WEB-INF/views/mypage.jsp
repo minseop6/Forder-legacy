@@ -18,17 +18,64 @@
   </head>
   <body>
     <jsp:include page="include.jsp" />
-    <c:if test='${empty session}'>
-      <a id="kakao-login-btn"></a>
-      <a href="http://developers.kakao.com/logout"></a>
-    </c:if>
-    <c:if test='${session}'>
-      <h1>${session}</h1>
-    </c:if>
+    <div id="button">
+      <c:if test='${empty session}'>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+          LOGIN
+        </button>
+        <a id="kakao-login-btn"></a>
+        <a href="http://developers.kakao.com/logout"></a>
+      </c:if>
+      <c:if test='${not empty session}'>
+        <h1>${session}</h1>
+      </c:if>
+    </div>
+
+    <!-- 로그인 모달 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="loginAjax" method="post">
+              <div class="form-group">
+                <label for="exampleInputEmail1">ID</label>
+                <input type="email" class="form-control" id="id" placeholder="이메일을 입력하세요">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">PW</label>
+                <input type="password" class="form-control" id="pw" placeholder="암호">
+              </div>
+              <button type="button" id="login" class="btn btn-default">LOGIN</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
 
 <script>
+//로그인
+$('#login').click(function(){
+  $.ajax({
+    type: "POST",
+    url: "/forder/login",
+    data:{
+      "id": $('#id').val(),
+      "pw": $('#pw').val(),
+    },
+    success: function(){
+      alert("LOGIN SUCCESS");
+      $('#button').load(window.location.href + "#button");
+    },
+    error: function(){
+      alert("LOGIN FAIL")
+    }
+  })
+})
+
+//카카오 로그인 API
 <c:if test='${empty session}'>
   // 사용할 앱의 JavaScript 키를 설정해 주세요.
   Kakao.init('a7462a3c5074c7223a0efc1b182f553d');

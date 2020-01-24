@@ -36,15 +36,40 @@
     <div id="header">
       <h1 id="title">FORDER</h1>
     </div>
-
-    
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+      LOGIN
+    </button>
+    <!-- 로그인 모달 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form class="" action="index.html" method="post">
+              <div class="form-group">
+                <label for="exampleInputEmail1">ID</label>
+                <input type="email" class="form-control" placeholder="이메일을 입력하세요">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">PW</label>
+                <input type="password" class="form-control" placeholder="암호">
+              </div>
+              <button type="submit" class="btn btn-default">LOGIN</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="footer">
       <a href="#"><img class="icon" src="../../../resources/static/img/icon-home.png"></a>
       <a href="/alarm"><img class="icon" src="../../../resources/static/img/icon-alarm.png"></a>
       <img class="icon" src="../../../resources/static/img/icon-map.png">
-      <img class="icon" src="../../../resources/static/img/icon-favorite.png">
+      <img class="icon" src="../../../resources/static/img/icon-like.png">
       <img class="icon" src="../../../resources/static/img/icon-user.png">
     </div>
   </body>
 </html>
+
+<script>
+
+</script>

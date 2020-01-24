@@ -2,6 +2,7 @@ package com.ms.forder.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ms.forder.Domain.Store;
 import com.ms.forder.Service.StoreService;
+import com.ms.forder.Service.UserService;
 
 @Controller
 @RequestMapping("/forder")
@@ -21,6 +23,8 @@ public class MainConroller {
 	
 	@Autowired
 	StoreService storeService;
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("")
 	public ModelAndView main() {
@@ -70,12 +74,28 @@ public class MainConroller {
 		return model;
 	}
 	
+	//로그인
+	@PostMapping("/login")
+	public String login(HttpServletRequest request, HttpSession session) {
+		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		if(userService.login(id, pw)) {
+			session.setAttribute("name", id);
+			
+			return "mypage";
+		}else {
+			return "fail";
+		}
+	}
+	
+	//카카오 로그인
 	@PostMapping("/kakaoLogin")
 	public String kakaoLogin(@RequestParam("name") String name, HttpSession session) throws Exception{
 		
 		System.out.println("kakao user: " + name);
 		session.setAttribute("name", name);
 		
-		return null;
+		return "redirect:/mypage";
 	}
 }
