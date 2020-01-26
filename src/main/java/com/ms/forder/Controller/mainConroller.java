@@ -98,4 +98,13 @@ public class MainConroller {
 		
 		return "redirect:/mypage";
 	}
+	
+	//·Î±×¾Æ¿ô
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "mypage";
+	}
 }

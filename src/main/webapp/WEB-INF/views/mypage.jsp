@@ -18,6 +18,7 @@
   </head>
   <body>
     <jsp:include page="include.jsp" />
+
     <div id="button">
       <c:if test='${empty session}'>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
@@ -27,6 +28,7 @@
         <a href="http://developers.kakao.com/logout"></a>
       </c:if>
       <c:if test='${not empty session}'>
+        <button type="button" id="logout">LOGOUT</button>
         <h1>${session}</h1>
       </c:if>
     </div>
@@ -35,6 +37,9 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
+          <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
           <div class="modal-body">
             <form action="loginAjax" method="post">
               <div class="form-group">
@@ -66,7 +71,7 @@ $('#login').click(function(){
       "pw": $('#pw').val(),
     },
     success: function(){
-      alert("LOGIN SUCCESS");
+      $('.close').trigger("click");
       $('#button').load(window.location.href + "#button");
     },
     error: function(){
@@ -102,4 +107,18 @@ $('#login').click(function(){
     }
   });
 </c:if>
+
+// 로그아웃
+$('#logout').click(function(){
+  $.ajax({
+    type: "POST",
+    url: "/forder/logout",
+    success: function(){
+      $('#button').load(window.location.href + "#button");
+    },
+    error: function(){
+      alert("LOGOUT FAIL")
+    }
+  })
+})
 </script>
