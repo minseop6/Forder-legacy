@@ -6,6 +6,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -15,13 +16,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <style>
-      #header {
-        height: 10%;
-        width: 100%;
-        padding: 1rem;
-        font-weight: bold;
-        justify-content: space-between;
-      }
+    #top{
+      height: 10%;
+      position: relative;
+      text-align: center;
+    }
       #footer {
         position: fixed;
         bottom: 0;
@@ -39,9 +38,9 @@
     </style>
   </head>
   <body>
-    <div id="header">
+    <header id="top">
       <h1 id="title">FORDER</h1>
-    </div>
+    </header>
     <div id="footer">
       <a href="/forder"><img class="icon" src="/static/img/icon-home.png"></a>
       <a href="/forder/alarm"><img class="icon" src="/static/img/icon-alarm.png"></a>

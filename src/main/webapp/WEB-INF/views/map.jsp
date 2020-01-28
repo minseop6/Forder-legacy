@@ -63,7 +63,7 @@
           		</c:forEach>
             ];
 
-            for (var i = 0; i < positions.length; i ++) {
+            for (var i = 0; i<positions.length; i++) {
               // 마커를 생성합니다
               var marker = new kakao.maps.Marker({
                   map: map, // 마커를 표시할 지도
