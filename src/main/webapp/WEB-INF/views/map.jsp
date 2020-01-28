@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <!-- Daum map API -->
+    <!-- Kakao map API -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7462a3c5074c7223a0efc1b182f553d"></script>
 
     <style>
@@ -56,7 +56,7 @@
             var positions = [
               <c:forEach var="item" items="${list }">
           				  {
-                      content: '<div><a href="/forder/store/${item.sno}">${item.name}</a>${item.category}</div>',
+                      content: '<div><a href="/forder/store/${item.sno}">${item.name}</a><br>${item.category}</div>',
                       sno: ${item.sno},
                       latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
                     },

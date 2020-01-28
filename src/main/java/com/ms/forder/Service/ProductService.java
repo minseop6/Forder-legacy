@@ -16,6 +16,6 @@ public class ProductService {
 	
 	public List<Product> storeProduct(int sno){
 		
-		return productRepo.findBysno(sno);
+		return productRepo.findBysnoAndStatus(sno, 1);
 	}
 }

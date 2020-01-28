@@ -16,21 +16,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <style>
-    #top{
-      height: 10%;
-      position: relative;
-      text-align: center;
-    }
+      #top{
+        height: 10%;
+        position: relative;
+        text-align: center;
+      }
       #footer {
         position: fixed;
         bottom: 0;
         height: 10%;
         width: 100%;
         justify-content: space-between;
-       }
-       #title{
-         text-align: center;
-         font-size: 100px;
        }
        .icon{
          width: 18%;

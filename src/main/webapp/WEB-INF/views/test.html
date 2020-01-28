@@ -27,35 +27,50 @@
        .icon{
          width: 18%;
        }
+
+       .food{
+         float: left;
+         width:30%;
+       }
+       .product{
+         width: 100%;
+         overflow: hidden;
+       }
     </style>
   </head>
   <body>
     <header id="top">
       <h1 id="title">FORDER</h1>
     </header>
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-      LOGIN
-    </button>
-    <!-- 로그인 모달 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <form action="index.html" method="post">
-              <div class="form-group">
-                <label for="exampleInputEmail1">ID</label>
-                <input type="email" class="form-control" placeholder="이메일을 입력하세요">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">PW</label>
-                <input type="password" class="form-control" placeholder="암호">
-              </div>
-              <button type="submit" class="btn btn-default">LOGIN</button>
-            </form>
-          </div>
+    <div class="container">
+      <div class="product">
+        <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
+        <ul>
+          <li>제육볶음</li>
+          <li>6000원</li>
+        </ul>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default">-</button>
+          <button type="button" class="btn btn-default" disabled>0</button>
+          <button type="button" class="btn btn-default">+</button>
         </div>
       </div>
+      <div class="product">
+        <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
+        <ul>
+          <li>제육볶음</li>
+          <li>6000원</li>
+        </ul>
+      </div>
+      <div class="product">
+        <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
+        <ul>
+          <li>제육볶음</li>
+          <li>6000원</li>
+        </ul>
+      </div>
     </div>
+
 
     <div id="footer">
       <a href="#"><img class="icon" src="../../../resources/static/img/icon-home.png"></a>
