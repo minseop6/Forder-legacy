@@ -13,26 +13,32 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="user")
+@Table(name="product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter
 @Setter
-public class User {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="u_no")
-	private Integer uno;
+	@Column(name="p_no")
+	private Integer pno;
 	
-	@Column(name="id")
-	private String id;
+	@Column(name="s_no")
+	private Integer sno;
 	
-	@Column(name="pw")
-	private String pw;
+	@Column(name="p_name")
+	private String pname;
 	
-	@Column(name="name")
-	private String name;
+	@Column(name="price")
+	private Integer price;
 	
-	@Column(name="power")
-	private Integer power;
+	@Column(name="image")
+	private String image;
+	
+	@Column(name="stack")
+	private Integer stack;
+	
+	@Column(name="status")
+	private Integer status;
 }

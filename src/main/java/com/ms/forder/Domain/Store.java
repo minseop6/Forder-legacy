@@ -14,7 +14,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name="store")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter
 @Setter
 public class Store {
@@ -22,10 +21,13 @@ public class Store {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="s_no")
-	private Integer s_no;
+	private Integer sno;
 	
 	@Column(name="u_no")
-	private Integer u_no;
+	private Integer uno;
+	
+	@Column(name="name")
+	private String name;
 	
 	@Column(name="lat")
 	private double lat;
@@ -35,5 +37,4 @@ public class Store {
 	
 	@Column(name="category")
 	private String category;
-	
 }

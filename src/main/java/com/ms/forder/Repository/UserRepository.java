@@ -7,4 +7,5 @@ import com.ms.forder.Domain.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 
 	User findById(String id);
+	
 }
