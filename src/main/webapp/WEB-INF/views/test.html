@@ -36,6 +36,15 @@
          width: 100%;
          overflow: hidden;
        }
+       .bottom{
+         padding: 10px;
+         width: 100%;
+         position: absolute;
+         bottom: 10%;
+       }
+       .order{
+         width: 100%;
+       }
     </style>
   </head>
   <body>
@@ -49,10 +58,10 @@
           <li>제육볶음</li>
           <li>6000원</li>
         </ul>
-        <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default">-</button>
-          <button type="button" class="btn btn-default" disabled>0</button>
-          <button type="button" class="btn btn-default">+</button>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default minus">-</button>
+          <button type="button" class="btn btn-default 1" disabled>0</button>
+          <button type="button" class="btn btn-default plus">+</button>
         </div>
       </div>
       <div class="product">
@@ -61,6 +70,11 @@
           <li>제육볶음</li>
           <li>6000원</li>
         </ul>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default minus">-</button>
+          <button type="button" class="btn btn-default 2" disabled>0</button>
+          <button type="button" class="btn btn-default plus">+</button>
+        </div>
       </div>
       <div class="product">
         <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
@@ -68,9 +82,17 @@
           <li>제육볶음</li>
           <li>6000원</li>
         </ul>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default minus">-</button>
+          <button type="button" class="btn btn-default count" disabled>0</button>
+          <button type="button" class="btn btn-default plus">+</button>
+        </div>
       </div>
     </div>
 
+    <div class="bottom">
+      <button type="button" class="btn btn-default order">주문하기</button>
+    </div>
 
     <div id="footer">
       <a href="#"><img class="icon" src="../../../resources/static/img/icon-home.png"></a>
@@ -83,5 +105,20 @@
 </html>
 
 <script>
+  $('.plus').click(function(){
+    var casting = Number($(this).prev().text());
+    var result = String(casting + 1);
+    $(this).prev().text(result);
+  })
 
+  $('.minus').click(function(){
+    var casting = Number($(this).next().text());
+    if(casting > 0){
+      var result = String(casting - 1);
+      $(this).next().text(result);
+    }
+  })
+  $('.order').click(function(){
+    console.log($('.count').text());
+  })
 </script>

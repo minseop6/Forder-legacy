@@ -1,5 +1,7 @@
 package com.ms.forder.Domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,29 +15,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="store")
+@Table(name="product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter
 @Setter
-public class Store {
+public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="s_no")
-	private Integer sno;
+	@Column(name="ono")
+	private int ono;
 	
-	@Column(name="u_no")
-	private Integer uno;
+	@Column(name="pno")
+	private int pno;
 	
-	@Column(name="name")
-	private String name;
+	@Column(name="otime", updatable=false)
+	private LocalDateTime otime;
 	
-	@Column(name="lat")
-	private double lat;
+	@Column(name="amount")
+	private int amount;
 	
-	@Column(name="lng")
-	private double lng;
-	
-	@Column(name="category")
-	private String category;
+	@Column(name="status")
+	private int status;
 }
