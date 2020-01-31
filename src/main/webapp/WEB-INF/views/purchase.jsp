@@ -11,6 +11,13 @@
   <body>
     <jsp:include page="include.jsp" />
 
-    
+    <div id="target">
+
+    </div>
   </body>
 </html>
+
+<script>
+  console.log($.cookie());
+
+</script>

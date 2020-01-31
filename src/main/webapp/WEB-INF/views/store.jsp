@@ -31,68 +31,51 @@
   </head>
   <body>
     <jsp:include page="include.jsp" />
-    <div class="container">
-      <c:forEach var="item" items="${list }">
-        <div class="product">
-          <img class="food" src="/static/img/product/${item.image}">
-          <ul class="information">
-            <li>${item.pname}</li>
-            <li>${item.price}</li>
-          </ul>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default minus">-</button>
-            <button type="button" id="${item.pno}" class="btn btn-default count" disabled>0</button>
-            <button type="button" class="btn btn-default plus">+</button>
-          </div>
-        </div>
-      </c:forEach>
-    </div>
 
-    <div class="bottom">
-      <button type="button" class="btn btn-default order">주문하기</button>
-    </div>
+    <form action="/forder/purchase" method="get">
+      <div class="container">
+        <c:set var="count" value="0" />
+        <c:set var="add" value="1" />
+        <c:forEach var="item" items="${list }">
+          <div class="product">
+            <img class="food" src="/static/img/product/${item.image}">
+            <ul class="information">
+              <li>${item.pname}</li>
+              <li>${item.price}</li>
+            </ul>
+            <div class="group">
+              <button type="button" class="btn btn-default minus">-</button>
+              <input type="text" name="purchase[${count}].amount" value="0">
+              <button type="button" class="btn btn-default plus">+</button>
+              <input type="hidden" name="purchase[${count}].pno" value="${item.pno}">
+            </div>
+          </div>
+          <c:set var="count" value="${count + add}" />
+        </c:forEach>
+      </div>
+
+      <div class="bottom">
+        <button type="submit" class="btn btn-default order">주문하기</button>
+      </div>
+    </form>
   </body>
 </html>
 
 <script>
   //수량 +
   $('.plus').click(function(){
-    var casting = Number($(this).prev().text());
-    var result = String(casting + 1);
-    $(this).prev().text(result);
+    var num = $(this).prev().val();
+    var result = Number(num) + 1;
+    $(this).prev().val(result);
   })
 
   //수량 -
   $('.minus').click(function(){
-    var casting = Number($(this).next().text());
-    if(casting > 0){
-      var result = String(casting - 1);
-      $(this).next().text(result);
+    var num = $(this).next().val();
+    if(num > 0){
+      var result = Number(num) - 1;
+      $(this).next().val(result);
     }
   })
 
-  $('.order').click(function(){
-    var order = {};
-    <c:forEach var="item" items="${list }">
-      if($('#${item.pno}').text() != 0){
-        console.log($('#${item.pno}').text())
-
-        order.p${item.pno} = $('#${item.pno}').text();
-        console.log(order);
-      }
-    </c:forEach>
-
-    $.ajax({
-      type: "GET",
-      url: "/forder/purchase",
-      contentType: 'application/json; charset=UTF-8',
-      data: JSON.stringify(order),
-      success: function(){
-        alter('success');
-      },
-      error: function(){
-        alert("fail")
-      }
-    })
-  })
 </script>
