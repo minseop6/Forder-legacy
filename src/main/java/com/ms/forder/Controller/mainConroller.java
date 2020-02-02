@@ -1,5 +1,6 @@
 package com.ms.forder.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,14 +73,18 @@ public class MainConroller {
 	}
 	
 	@GetMapping("/purchase")
-	public ModelAndView purchase(@ModelAttribute Purchase purchase) {
+	public ModelAndView purchase(@ModelAttribute Purchase purchase) throws Exception {
 
 		ModelAndView model = new ModelAndView("purchase");
+		List<Product> productList = new ArrayList<Product>();
 		
 		for(int i=0; i<purchase.getPurchase().size(); i++) {
-			System.out.println(purchase.getPurchase().get(i).getPno());
-			System.out.println(purchase.getPurchase().get(i).getAmount());
+			Product product = productService.product(purchase.getPurchase().get(i).getPno());
+			System.out.println(product.getPno());
+			productList.add(product);
 		}
+		model.addObject("productList", productList);
+		model.addObject("purchase", purchase.getPurchase());
 		
 		return model;
 	}

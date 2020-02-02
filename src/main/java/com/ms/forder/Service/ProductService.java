@@ -1,6 +1,7 @@
 package com.ms.forder.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,11 @@ public class ProductService {
 
 	@Autowired
 	ProductRepository productRepo;
+	
+	public Product product(int pno) {
+		
+		return productRepo.getOne(pno);
+	}
 	
 	public List<Product> storeProduct(int sno){
 		
