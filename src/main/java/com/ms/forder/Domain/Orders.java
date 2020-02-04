@@ -1,7 +1,6 @@
 package com.ms.forder.Domain;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,32 +9,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="product")
+@Table(name="orders")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter
 @Setter
-public class Order {
+public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ono")
-	private int ono;
+	private Integer ono;
 	
 	@Column(name="pno")
 	private int pno;
 	
-	@Column(name="otime", updatable=false)
-	private LocalDateTime otime;
+//	@CreationTimestamp
+//	@Column(name="otime", updatable=false)
+//	private Timestamp otime;
 	
 	@Column(name="amount")
 	private int amount;
 	
-	@Column(name="status")
-	private int status;
+	@Column(name="complete")
+	private int complete;
+	
+//	@PrePersist
+//    public void createdAt() {
+//        this.otime = LocalDateTime.now();
+//    }
 }
+

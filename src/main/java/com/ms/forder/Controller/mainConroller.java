@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ms.Vo.Purchase;
+import com.ms.forder.Domain.Orders;
 import com.ms.forder.Domain.Product;
 import com.ms.forder.Domain.Store;
+import com.ms.forder.Service.OrderServices;
 import com.ms.forder.Service.ProductService;
 import com.ms.forder.Service.StoreService;
 import com.ms.forder.Service.UserService;
@@ -33,6 +35,8 @@ public class MainConroller {
 	UserService userService;
 	@Autowired
 	ProductService productService;
+	@Autowired
+	OrderServices orderService;
 	
 	@GetMapping("")
 	public ModelAndView main() {
@@ -65,8 +69,6 @@ public class MainConroller {
 		
 		ModelAndView model = new ModelAndView("store");
 		List<Product> list = productService.storeProduct(sno);
-		System.out.println(sno);
-		System.out.println(list);
 		model.addObject("list", list);
 		
 		return model;
@@ -80,13 +82,29 @@ public class MainConroller {
 		
 		for(int i=0; i<purchase.getPurchase().size(); i++) {
 			Product product = productService.product(purchase.getPurchase().get(i).getPno());
-			System.out.println(product.getPno());
 			productList.add(product);
 		}
 		model.addObject("productList", productList);
 		model.addObject("purchase", purchase.getPurchase());
 		
 		return model;
+	}
+	
+	@PostMapping("/purchase")
+	public String purchase(@RequestParam("pno") Integer[] pnos, 
+			@RequestParam("amount") Integer[] amounts) throws Exception {
+
+		for(int i=0; i<pnos.length; i++) {
+			System.out.println(pnos[i]);
+			System.out.println(amounts[i]);
+			Orders info = new Orders();
+			info.setPno(pnos[i]);
+			info.setAmount(amounts[i]);
+			info.setComplete(0);
+			orderService.order(info);
+		}
+		
+		return "redriect:/forder";
 	}
 	
 	@GetMapping("/like")

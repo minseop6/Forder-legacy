@@ -12,16 +12,16 @@
     <jsp:include page="include.jsp" />
 
     <div id="container">
-      <form action="index.html" method="post">
-        <c:forEach var="item" items="${productList }">
+      <form action="purchase" method="post">
+        <c:forEach var="item" items="${productList}" varStatus="status">
           <div class="product">
-            <label>제품명</label><input type="text" name="pname" value="${item.pname}" disabled>
-            <label>가격</label><input type="text" name="price" value="${item.price}" disabled>
-        </c:forEach>
-        <c:forEach var="item" items="${purchase }">
-            <label>수량</label><input type="text" name="amount" value="${item.amount}" disabled>
+            <input type="hidden" name="pno" value="${productList[status.index].pno}">
+            <label>제품명</label><input type="text" name="pname" value="${productList[status.index].pname}" readonly><br>
+            <label>가격</label><input type="text" name="price" id="price${status.index}" value="${productList[status.index].price}" readonly><br>
+            <label>수량</label><input type="text" name="amount" id="amount${status.index}" value="${purchase[status.index].amount}" readonly><br>
           </div>
         </c:forEach>
+        <input type="text" id="total" readonly>
         <button type="submit">결제</button>
       </form>
     </div>
@@ -29,10 +29,9 @@
 </html>
 
 <script>
-<c:forEach var="item" items="${productList }">
-  console.log('${item.pno}');
+var total = 0;
+<c:forEach var="item" items="${productList}" varStatus="status">
+  total += $('#price${status.index}').val() * $('#amount${status.index}').val();
 </c:forEach>
-<c:forEach var="item" items="${purchase }">
-  console.log('${item.amount}');
-</c:forEach>
+$('#total').val(total + ' 원');
 </script>

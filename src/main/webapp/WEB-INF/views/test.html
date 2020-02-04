@@ -48,77 +48,32 @@
     </style>
   </head>
   <body>
-    <header id="top">
-      <h1 id="title">FORDER</h1>
-    </header>
-    <div class="container">
-      <div class="product">
-        <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
-        <ul>
-          <li>제육볶음</li>
-          <li>6000원</li>
-        </ul>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default minus">-</button>
-          <button type="button" class="btn btn-default 1" disabled>0</button>
-          <button type="button" class="btn btn-default plus">+</button>
-        </div>
-      </div>
-      <div class="product">
-        <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
-        <ul>
-          <li>제육볶음</li>
-          <li>6000원</li>
-        </ul>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default minus">-</button>
-          <button type="button" class="btn btn-default 2" disabled>0</button>
-          <button type="button" class="btn btn-default plus">+</button>
-        </div>
-      </div>
-      <div class="product">
-        <img class="food" src="../../../resources/static/img/product/jeyook.jpg">
-        <ul>
-          <li>제육볶음</li>
-          <li>6000원</li>
-        </ul>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default minus">-</button>
-          <button type="button" class="btn btn-default count" disabled>0</button>
-          <button type="button" class="btn btn-default plus">+</button>
-        </div>
-      </div>
-    </div>
+    <div id="container">
+      <form action="index.html" method="post">
+          <div class="product">
+            <label>제품명</label><input type="text" name="order[0].pname" value="1" disabled><br>
+            <label>가격</label><input type="text" name="order[0].price" value="1000" disabled><br>
+            <label>수량</label><input type="text" name="order[0].amount" value="3" disabled><br>
+          </div>
+          <div class="product">
+            <label>제품명</label><input type="text" name="order[1].pname" value="2" disabled><br>
+            <label>가격</label><input type="text" name="order[1].price" value="2000" disabled><br>
+            <label>수량</label><input type="text" name="order[1].amount" value="2" disabled><br>
+          </div>
+          <div class="product">
+            <label>제품명</label><input type="text" name="order[2].pname" value="3" disabled><br>
+            <label>가격</label><input type="text" name="order[2].price" value="3000" disabled><br>
+            <label>수량</label><input type="text" name="order[2].amount" value="1" disabled><br>
+          </div>
+        <div id="total">
 
-    <div class="bottom">
-      <button type="button" class="btn btn-default order">주문하기</button>
-    </div>
-
-    <div id="footer">
-      <a href="#"><img class="icon" src="../../../resources/static/img/icon-home.png"></a>
-      <a href="/alarm"><img class="icon" src="../../../resources/static/img/icon-alarm.png"></a>
-      <img class="icon" src="../../../resources/static/img/icon-map.png">
-      <img class="icon" src="../../../resources/static/img/icon-like.png">
-      <img class="icon" src="../../../resources/static/img/icon-user.png">
+        </div>
+        <button type="submit">결제</button>
+      </form>
     </div>
   </body>
 </html>
 
 <script>
-  $('.plus').click(function(){
-    var casting = Number($(this).prev().text());
-    var result = String(casting + 1);
-    $(this).prev().text(result);
-  })
-
-  $('.minus').click(function(){
-    var casting = Number($(this).next().text());
-    if(casting > 0){
-      var result = String(casting - 1);
-      $(this).next().text(result);
-    }
-  })
-  $('.order').click(function(){
-    console.log($('.count').text());
-  })
+console.log($('input[name=order[1].price]').val());
 </script>
