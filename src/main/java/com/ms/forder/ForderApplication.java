@@ -1,5 +1,9 @@
 package com.ms.forder;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.catalina.connector.Connector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +29,11 @@ public class ForderApplication {
 	        }
 	    });
 	    return factory;
+	}
+	
+	@PostConstruct
+	void started() {
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
 	}
 
 }

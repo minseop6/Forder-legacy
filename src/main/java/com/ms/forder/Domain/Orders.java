@@ -1,6 +1,6 @@
 package com.ms.forder.Domain;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,9 +31,9 @@ public class Orders {
 	@Column(name="pno")
 	private int pno;
 	
-//	@CreationTimestamp
-//	@Column(name="otime", updatable=false)
-//	private Timestamp otime;
+	@CreationTimestamp
+	@Column(name="otime", updatable=false)
+	private LocalDateTime otime;
 	
 	@Column(name="amount")
 	private int amount;
@@ -41,9 +41,5 @@ public class Orders {
 	@Column(name="complete")
 	private int complete;
 	
-//	@PrePersist
-//    public void createdAt() {
-//        this.otime = LocalDateTime.now();
-//    }
 }
 

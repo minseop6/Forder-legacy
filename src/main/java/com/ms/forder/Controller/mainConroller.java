@@ -104,7 +104,7 @@ public class MainConroller {
 			orderService.order(info);
 		}
 		
-		return "redriect:/forder";
+		return "redriect:/";
 	}
 	
 	@GetMapping("/like")
