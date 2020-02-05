@@ -12,8 +12,12 @@ public class OrderServices {
 	@Autowired
 	OrdersRepository orderRepo;
 	
-	public void order(Orders info) {
+	public void insertOrder(Orders info) {
 		
 		orderRepo.saveAndFlush(info);
 	}
+	
+//	public List<Order> alarmOrder(){
+//		
+//	}
 }

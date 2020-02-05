@@ -1,5 +1,7 @@
 package com.ms.forder.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,15 @@ public class UserService {
 		} else {
 			return false;
 		}
+	}
+	
+	public List<User> allUser(){
+		
+		return userRepo.findAll();
+	}
+	
+	public void signup(User user) {
+		
+		userRepo.save(user);
 	}
 }

@@ -38,6 +38,9 @@ public class Orders {
 	@Column(name="amount")
 	private int amount;
 	
+	@Column(name="alarm")
+	private int alarm;
+	
 	@Column(name="complete")
 	private int complete;
 	
