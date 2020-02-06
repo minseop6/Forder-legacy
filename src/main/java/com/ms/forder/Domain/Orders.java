@@ -28,6 +28,9 @@ public class Orders {
 	@Column(name="ono")
 	private Integer ono;
 	
+	@Column(name="uno")
+	private int uno;
+	
 	@Column(name="pno")
 	private int pno;
 	

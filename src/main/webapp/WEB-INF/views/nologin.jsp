@@ -9,14 +9,6 @@
     <title></title>
   </head>
   <body>
-    <jsp:include page="include.jsp" />
-    <h1>alarm</h1>
-
-    <c:forEach var="item" items="${list}">
-      <div class="">
-        ${item.amount}
-        ${item.alarm}
-      </div>
-    </c:forEach>
+    <h1>로그인이 필요한 서비스입니다.</h1>
   </body>
 </html>
