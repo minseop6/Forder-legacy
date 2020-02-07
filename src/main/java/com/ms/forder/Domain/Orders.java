@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,9 +32,9 @@ public class Orders {
 	
 	@Column(name="uno")
 	private int uno;
-	
-	@Column(name="pno")
-	private int pno;
+//	
+//	@Column(name="pno")
+//	private int pno;
 	
 	@CreationTimestamp
 	@Column(name="otime", updatable=false)
@@ -46,6 +48,10 @@ public class Orders {
 	
 	@Column(name="complete")
 	private int complete;
+	
+	@ManyToOne
+	@JoinColumn(name="product_pno")
+	private Product product;
 	
 }
 

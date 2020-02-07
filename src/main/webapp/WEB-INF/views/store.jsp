@@ -47,7 +47,7 @@
               <button type="button" class="btn btn-default minus">-</button>
               <input type="text" name="purchase[${count}].amount" value="0">
               <button type="button" class="btn btn-default plus">+</button>
-              <input type="hidden" name="purchase[${count}].pno" value="${item.pno}">
+              <input type="hidden" name="purchase[${count}].product.pno" value="${item.pno}">
             </div>
           </div>
           <c:set var="count" value="${count + add}" />

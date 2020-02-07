@@ -21,10 +21,10 @@ public class Store {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="s_no")
+	@Column(name="sno")
 	private Integer sno;
 	
-	@Column(name="u_no")
+	@Column(name="uno")
 	private Integer uno;
 	
 	@Column(name="name")

@@ -56,6 +56,9 @@ public class MainConroller {
 			model.setViewName("alarm");
 			int uno = (int) session.getAttribute("uno");
 			List<Orders> list = ordersService.userOrders(uno);
+//			for(int i=0; i<list.size(); i++) {
+//				
+//			}
 			model.addObject("list", list);
 		}else {
 			model.setViewName("nologin");
@@ -107,8 +110,8 @@ public class MainConroller {
 			
 			for(int i=0; i<purchase.getPurchase().size(); i++) {
 				if(purchase.getPurchase().get(i).getAmount() != 0) {
-					Product product = productService.product(purchase.getPurchase().get(i).getPno());
-					productList.add(product);
+					Product product = productService.product(purchase.getPurchase().get(i).getProduct().getPno()); //임시
+					productList.add(product); //임시
 				}
 			}
 			model.addObject("productList", productList);
@@ -121,13 +124,16 @@ public class MainConroller {
 		return model;
 	}
 	
+	
+	
+	
 	@PostMapping("/purchase")
 	public String purchase(@RequestParam("pno") Integer[] pnos, 
 			@RequestParam("amount") Integer[] amounts, HttpSession session) throws Exception {
 
 		for(int i=0; i<pnos.length; i++) {
 			Orders info = new Orders();
-			info.setPno(pnos[i]);
+			//info.setPno(pnos[i]); 임시
 			info.setAmount(amounts[i]);
 			info.setUno((int)session.getAttribute("uno"));
 			ordersService.insertOrders(info);

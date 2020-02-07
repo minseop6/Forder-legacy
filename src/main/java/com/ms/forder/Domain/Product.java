@@ -1,10 +1,14 @@
 package com.ms.forder.Domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,13 +25,13 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="p_no")
+	@Column(name="pno")
 	private Integer pno;
 	
-	@Column(name="s_no")
+	@Column(name="sno")
 	private Integer sno;
 	
-	@Column(name="p_name")
+	@Column(name="pname")
 	private String pname;
 	
 	@Column(name="price")
@@ -41,4 +45,7 @@ public class Product {
 	
 	@Column(name="status")
 	private Integer status;
+	
+	@OneToMany(mappedBy="product")
+	private List<Orders> orders = new ArrayList<Orders>();
 }
