@@ -14,8 +14,10 @@
 
     <c:forEach var="item" items="${list}">
       <div class="">
-        ${item.amount}
-        ${item.alarm}
+        <label>${item.product.pname}</label>
+        <label>${item.amount}개</label>
+        <label>${item.product.price}원</label><br>
+        <label>${item.otime}</label>
       </div>
     </c:forEach>
   </body>

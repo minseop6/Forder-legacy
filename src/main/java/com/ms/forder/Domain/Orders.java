@@ -32,9 +32,6 @@ public class Orders {
 	
 	@Column(name="uno")
 	private int uno;
-//	
-//	@Column(name="pno")
-//	private int pno;
 	
 	@CreationTimestamp
 	@Column(name="otime", updatable=false)

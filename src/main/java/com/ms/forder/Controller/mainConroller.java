@@ -56,14 +56,10 @@ public class MainConroller {
 			model.setViewName("alarm");
 			int uno = (int) session.getAttribute("uno");
 			List<Orders> list = ordersService.userOrders(uno);
-//			for(int i=0; i<list.size(); i++) {
-//				
-//			}
 			model.addObject("list", list);
 		}else {
 			model.setViewName("nologin");
 		}
-		
 		
 		return model;
 	}
@@ -110,8 +106,8 @@ public class MainConroller {
 			
 			for(int i=0; i<purchase.getPurchase().size(); i++) {
 				if(purchase.getPurchase().get(i).getAmount() != 0) {
-					Product product = productService.product(purchase.getPurchase().get(i).getProduct().getPno()); //임시
-					productList.add(product); //임시
+					Product product = productService.product(purchase.getPurchase().get(i).getProduct().getPno());
+					productList.add(product);
 				}
 			}
 			model.addObject("productList", productList);
@@ -124,16 +120,15 @@ public class MainConroller {
 		return model;
 	}
 	
-	
-	
-	
 	@PostMapping("/purchase")
 	public String purchase(@RequestParam("pno") Integer[] pnos, 
 			@RequestParam("amount") Integer[] amounts, HttpSession session) throws Exception {
 
 		for(int i=0; i<pnos.length; i++) {
 			Orders info = new Orders();
-			//info.setPno(pnos[i]); 임시
+			Product product = new Product();
+			product.setPno(pnos[i]);
+			info.setProduct(product);
 			info.setAmount(amounts[i]);
 			info.setUno((int)session.getAttribute("uno"));
 			ordersService.insertOrders(info);
@@ -193,7 +188,7 @@ public class MainConroller {
 	
 	@PostMapping("/signup")
 	public String signup(User user) {
-		
+		user.setPower(1);
 		userService.signup(user);
 		
 		return "redirect:/forder";
