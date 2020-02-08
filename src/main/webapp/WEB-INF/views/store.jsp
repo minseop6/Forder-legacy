@@ -32,6 +32,7 @@
   <body>
     <jsp:include page="include.jsp" />
 
+    <h1>${info.name}</h1>
     <form action="/forder/purchase" method="get">
       <div class="container">
         <c:set var="count" value="0" />

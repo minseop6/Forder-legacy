@@ -18,4 +18,9 @@ public class StoreService {
 		
 		return storeRepo.findAll();
 	}
+	
+	public Store storeInfo(int sno) {
+		
+		return storeRepo.getOne(sno);
+	}
 }

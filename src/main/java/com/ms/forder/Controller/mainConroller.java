@@ -86,7 +86,10 @@ public class MainConroller {
 		ModelAndView model = new ModelAndView();
 		if(session.getAttribute("id") != null) {
 			model.setViewName("store");
+			Store info = storeService.storeInfo(sno);
 			List<Product> list = productService.storeProduct(sno);
+			
+			model.addObject("info", info);
 			model.addObject("list", list);
 			
 		}else {

@@ -7,13 +7,17 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      .item{
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
     <jsp:include page="include.jsp" />
-    <h1>alarm</h1>
 
     <c:forEach var="item" items="${list}">
-      <div class="">
+      <div class="item">
         <label>${item.product.pname}</label>
         <label>${item.amount}개</label>
         <label>${item.product.price}원</label><br>
