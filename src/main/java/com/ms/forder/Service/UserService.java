@@ -14,6 +14,11 @@ public class UserService {
 	@Autowired
 	UserRepository userRepo;
 	
+	public User user(String id) {
+		
+		return userRepo.findById(id);
+	}
+	
 	public boolean login(String id, String pw) {
 		
 		User user = userRepo.findById(id);

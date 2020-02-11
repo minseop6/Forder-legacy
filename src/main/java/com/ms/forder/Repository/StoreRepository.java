@@ -6,4 +6,5 @@ import com.ms.forder.Domain.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Integer>{
 
+	Store findByUno(int uno);
 }

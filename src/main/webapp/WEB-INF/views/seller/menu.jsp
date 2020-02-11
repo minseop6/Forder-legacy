@@ -1,16 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous"></script>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <title></title>
+
     <style>
       .form-control{
         width: 30%;
@@ -18,7 +15,10 @@
     </style>
   </head>
   <body>
-    <form>
+    <jsp:include page="include.jsp" />
+
+    <h1>seller enrollment</h1>
+    <form action="menu" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label class="col-sm-2 control-label">상품 이름</label>
         <div class="col-sm-10">
@@ -33,12 +33,9 @@
       </div>
       <div class="form-group">
         <label>이미지 업로드</label>
-        <input type="file"  name="image">
+        <input type="file" name="image">
       </div>
       <button type="submit" class="btn btn-default">제출</button>
     </form>
   </body>
 </html>
-
-<script>
-</script>

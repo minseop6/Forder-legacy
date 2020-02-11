@@ -199,14 +199,20 @@ public class MainConroller {
 	
 	//·Î±×ÀÎ
 	@PostMapping("/login")
+	@ResponseBody
 	public String login(HttpServletRequest request, HttpSession session) {
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		if(userService.login(id, pw)) {
 			session.setAttribute("id", id);
-			
-			return "mypage";
+			User user = userService.user(id);
+			session.setAttribute("uno", user.getUno());
+			if(user.getPower() == 2) {
+				return "seller";
+			}
+		
+			return "user";
 		}else {
 			return "fail";
 		}

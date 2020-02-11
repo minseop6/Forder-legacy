@@ -67,7 +67,10 @@ $('#login').click(function(){
       "id": $('#id').val(),
       "pw": $('#pw').val(),
     },
-    success: function(){
+    success: function(result){
+      if(result == "seller"){
+        location.href="/forder/seller";
+      }
       $('.close').trigger("click");
       $('#button').load(window.location.href + "#button");
     },

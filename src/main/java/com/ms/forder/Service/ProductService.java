@@ -24,4 +24,9 @@ public class ProductService {
 		
 		return productRepo.findBysnoAndStatus(sno, 1);
 	}
+	
+	public void addProduct(Product product) {
+		
+		productRepo.save(product);
+	}
 }
