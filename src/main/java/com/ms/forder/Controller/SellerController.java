@@ -2,6 +2,7 @@ package com.ms.forder.Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -95,11 +96,44 @@ public class SellerController {
 		ModelAndView model = new ModelAndView();
 		if(session.getAttribute("id") != null) {
 			model.setViewName("seller/store");
+			
+			Store store = storeService.storeInfoByUno((int)session.getAttribute("uno"));
+			List<Product> list = productService.storeAllProduct(store.getSno());
+			
+			model.addObject("list", list);
 		}else {
 			model.setViewName("nologin");
 		}
 		
 		return model; 
+	}
+	
+	@PostMapping("/store")
+	public String store(@RequestParam("pno") Integer[] pno, 
+			@RequestParam("pname") String[] pname,
+			@RequestParam("price") Integer[] price,
+			HttpServletRequest request) {
+		
+		for(int i=0; i<pno.length; i++) {
+			System.out.println("pno: " + pno[i]);
+			System.out.println("pname: " + pname[i]);
+			System.out.println("price: " + price[i]);
+			Product product = new Product();
+			product.setPno(pno[i]);
+			product.setPname(pname[i]);
+			product.setPrice(price[i]);
+			String status = request.getParameter(pno[i].toString());
+			if(status != null) {
+				System.out.println("status: " + status);
+				product.setStatus(1);
+			}else {
+				System.out.println("status: Off");
+				product.setStatus(0);
+			}
+			productService.addProduct(product);
+		}
+		
+		return "redirect:/forder/seller/";
 	}
 	
 	@GetMapping("/order")

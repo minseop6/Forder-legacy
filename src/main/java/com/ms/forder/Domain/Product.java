@@ -30,7 +30,7 @@ public class Product {
 	@Column(name="pno")
 	private Integer pno;
 	
-	@Column(name="sno")
+	@Column(name="sno", updatable=false)
 	private Integer sno;
 	
 	@Column(name="pname")
@@ -39,10 +39,10 @@ public class Product {
 	@Column(name="price")
 	private Integer price;
 	
-	@Column(name="image")
+	@Column(name="image", updatable=false)
 	private String image;
 	
-	@Column(name="stack")
+	@Column(name="stack", updatable=false)
 	private Integer stack;
 	
 	@Column(name="status")

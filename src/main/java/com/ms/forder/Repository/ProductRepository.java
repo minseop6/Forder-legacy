@@ -9,4 +9,5 @@ import com.ms.forder.Domain.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	List<Product> findBysnoAndStatus(int sno, int state);
+	List<Product> findBysno(int sno);
 }

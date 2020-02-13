@@ -20,6 +20,11 @@ public class ProductService {
 		return productRepo.getOne(pno);
 	}
 	
+	public List<Product> storeAllProduct(int sno) {
+		
+		return productRepo.findBysno(sno);
+	}
+	
 	public List<Product> storeProduct(int sno){
 		
 		return productRepo.findBysnoAndStatus(sno, 1);
