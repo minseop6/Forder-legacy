@@ -99,9 +99,10 @@ public class SellerController {
 			model.setViewName("seller/store");
 			
 			Store store = storeService.storeInfoByUno((int)session.getAttribute("uno"));
-			List<Product> list = productService.storeAllProduct(store.getSno());
+			List<Product> productList = productService.storeAllProduct(store.getSno());
 			
-			model.addObject("list", list);
+			model.addObject("store", store);
+			model.addObject("productList", productList);
 		}else {
 			model.setViewName("nologin");
 		}
@@ -110,25 +111,35 @@ public class SellerController {
 	}
 	
 	@PutMapping("/store")
+	public String store(Store store, HttpServletRequest request) {
+		
+		String status = request.getParameter("storeStatus");
+		if(status != null) {
+			store.setStatus(1);
+		}else {
+			store.setStatus(0);
+		}
+		
+		storeService.storeUpdate(store);
+		
+		return "redirect:/forder/seller/";
+	}
+	
+	@PutMapping("/product")
 	public String store(@RequestParam("pno") Integer[] pno, 
 			@RequestParam("pname") String[] pname,
 			@RequestParam("price") Integer[] price,
 			HttpServletRequest request) {
 		
 		for(int i=0; i<pno.length; i++) {
-			System.out.println("pno: " + pno[i]);
-			System.out.println("pname: " + pname[i]);
-			System.out.println("price: " + price[i]);
 			Product product = new Product();
 			product.setPno(pno[i]);
 			product.setPname(pname[i]);
 			product.setPrice(price[i]);
 			String status = request.getParameter(pno[i].toString());
 			if(status != null) {
-				System.out.println("status: " + status);
 				product.setStatus(1);
 			}else {
-				System.out.println("status: Off");
 				product.setStatus(0);
 			}
 			productService.addProduct(product);

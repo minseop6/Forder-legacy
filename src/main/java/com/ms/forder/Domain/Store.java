@@ -24,16 +24,16 @@ public class Store {
 	@Column(name="sno")
 	private Integer sno;
 	
-	@Column(name="uno")
+	@Column(name="uno", updatable=false)
 	private Integer uno;
 	
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="lat")
+	@Column(name="lat", updatable=false)
 	private double lat;
 	
-	@Column(name="lng")
+	@Column(name="lng", updatable=false)
 	private double lng;
 	
 	@Column(name="category")

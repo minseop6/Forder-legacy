@@ -28,4 +28,9 @@ public class StoreService {
 		
 		return storeRepo.findByUno(uno);
 	}
+	
+	public Store storeUpdate(Store store) {
+		
+		return storeRepo.save(store);
+	}
 }

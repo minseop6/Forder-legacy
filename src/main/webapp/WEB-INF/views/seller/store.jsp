@@ -11,12 +11,32 @@
     <jsp:include page="include.jsp" />
 
     <h1>Store Management</h1>
-
+    <form action="store" method="post">
+      <input type="hidden" name="_method" value="PUT" />
+      <input type="hidden" name="sno" value="${store.sno}">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">상점 이름</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="name" value="${store.name}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">카테고리</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="category" value="${store.category}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>On/Off</label>
+        <input type="checkbox" id="storeStatus" name="storeStatus" data-onstyle="success">
+      </div>
+      <button type="submit" class="btn btn-default">등록</button>
+    </form>
 
     <h1>Product Management</h1>
-    <form action="store" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="_method" value="PUT">
-      <c:forEach var="item" items="${list}">
+    <form action="product" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="PUT" />
+      <c:forEach var="item" items="${productList}">
         <div class="">
           <input type="hidden" name="pno" value="${item.pno}">
           <div class="form-group">
@@ -46,7 +66,15 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script>
-  <c:forEach var="item" items="${list}">
+  //store status
+  if('${store.status}' == 1){
+    $('#storeStatus').bootstrapToggle('on')
+  }else{
+    $('#storeStatus').bootstrapToggle('off')
+  }
+
+  //products status
+  <c:forEach var="item" items="${productList}">
     if('${item.status}' == 1){
       $('#${item.pno}').bootstrapToggle('on')
     }else{
