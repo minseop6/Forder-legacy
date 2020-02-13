@@ -38,4 +38,7 @@ public class Store {
 	
 	@Column(name="category")
 	private String category;
+	
+	@Column(name="status", columnDefinition = "integer default 1")
+	private Integer status;
 }

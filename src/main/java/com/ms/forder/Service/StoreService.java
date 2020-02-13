@@ -16,7 +16,7 @@ public class StoreService {
 	
 	public List<Store> stores() {
 		
-		return storeRepo.findAll();
+		return storeRepo.findByStatus(1);
 	}
 	
 	public Store storeInfo(int sno) {

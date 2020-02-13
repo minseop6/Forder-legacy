@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -11,8 +10,12 @@
   <body>
     <jsp:include page="include.jsp" />
 
-    <h1>seller store</h1>
+    <h1>Store Management</h1>
+
+
+    <h1>Product Management</h1>
     <form action="store" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="PUT">
       <c:forEach var="item" items="${list}">
         <div class="">
           <input type="hidden" name="pno" value="${item.pno}">
