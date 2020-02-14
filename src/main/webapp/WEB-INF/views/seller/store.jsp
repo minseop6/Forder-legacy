@@ -29,8 +29,9 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">위치</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="lat" name="lat" />
-          <input type="text" class="form-control" id="lan" name="lan" />
+          <input type="text" class="form-control" id="address" />
+          <input type="hidden" class="form-control" id="lat" name="lat" />
+          <input type="hidden" class="form-control" id="lng" name="lng" />
         </div>
       </div>
       <div class="form-group">
@@ -73,8 +74,7 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <!-- Kakao map API -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7462a3c5074c7223a0efc1b182f553d"></script>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7462a3c5074c7223a0efc1b182f553d&libraries=services"></script>
 <script>
   //store status
   if('${store.status}' == 1){
@@ -96,17 +96,21 @@
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
           var lat = position.coords.latitude; // 위도
-          var lan = position.coords.longitude; // 경도
+          var lng = position.coords.longitude; // 경도
 
           $('#lat').val(lat);
-          $('#lan').val(lan);
+          $('#lng').val(lng);
 
-          var coord = new kakao.maps.LatLng(lat, lan);
+          //위도, 경도를 주소로 변환
+          var geocoder = new kakao.maps.services.Geocoder();
+          var coord = new kakao.maps.LatLng(lat, lng);
           var callback = function(result, status) {
               if (status === kakao.maps.services.Status.OK) {
-                  console.log('그런 너를 마주칠까 ' + result[0].address.address_name + '을 못가');
+                  console.log(result[0].address.address_name);
+                  $('#address').val(result[0].address.address_name);
               }
           };
+          geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
         });
       }

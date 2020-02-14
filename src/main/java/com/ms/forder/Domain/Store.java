@@ -30,10 +30,10 @@ public class Store {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="lat", updatable=false)
+	@Column(name="lat")
 	private double lat;
 	
-	@Column(name="lng", updatable=false)
+	@Column(name="lng")
 	private double lng;
 	
 	@Column(name="category")
