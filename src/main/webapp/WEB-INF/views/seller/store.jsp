@@ -27,6 +27,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-sm-2 control-label">위치</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="lat" name="lat" />
+          <input type="text" class="form-control" id="lan" name="lan" />
+        </div>
+      </div>
+      <div class="form-group">
         <label>On/Off</label>
         <input type="checkbox" id="storeStatus" name="storeStatus" data-onstyle="success">
       </div>
@@ -65,6 +72,9 @@
 <!-- bootstrap toggle -->
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<!-- Kakao map API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7462a3c5074c7223a0efc1b182f553d"></script>
+
 <script>
   //store status
   if('${store.status}' == 1){
@@ -81,4 +91,23 @@
       $('#${item.pno}').bootstrapToggle('off')
     }
   </c:forEach>
+
+  // 현재 위도 경도
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+          var lat = position.coords.latitude; // 위도
+          var lan = position.coords.longitude; // 경도
+
+          $('#lat').val(lat);
+          $('#lan').val(lan);
+
+          var coord = new kakao.maps.LatLng(lat, lan);
+          var callback = function(result, status) {
+              if (status === kakao.maps.services.Status.OK) {
+                  console.log('그런 너를 마주칠까 ' + result[0].address.address_name + '을 못가');
+              }
+          };
+
+        });
+      }
 </script>
