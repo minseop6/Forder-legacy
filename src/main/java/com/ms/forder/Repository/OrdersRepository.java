@@ -10,6 +10,6 @@ import com.ms.forder.Domain.Product;
 public interface OrdersRepository extends JpaRepository<Orders, Integer>{
 
 	List<Orders> findByUno(int uno);
-	
 	List<Orders> findByUnoAndAlarmAndComplete(int uno, int alarm, int complete);
+	List<Orders> findBySno(int sno);
 }

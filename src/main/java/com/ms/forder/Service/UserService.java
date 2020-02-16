@@ -19,6 +19,11 @@ public class UserService {
 		return userRepo.findById(id);
 	}
 	
+	public User user(int uno) {
+		
+		return userRepo.getOne(uno);
+	}
+	
 	public boolean login(String id, String pw) {
 		
 		User user = userRepo.findById(id);

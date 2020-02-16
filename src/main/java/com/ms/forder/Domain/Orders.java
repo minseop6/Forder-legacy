@@ -33,6 +33,9 @@ public class Orders {
 	@Column(name="uno")
 	private int uno;
 	
+	@Column(name="sno")
+	private int sno;
+	
 	@CreationTimestamp
 	@Column(name="otime", updatable=false)
 	private LocalDateTime otime;

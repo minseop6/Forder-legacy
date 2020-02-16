@@ -24,4 +24,9 @@ public class OrdersServices {
 		
 		return ordersRepo.findByUnoAndAlarmAndComplete(uno, 1, 0);
 	}
+	
+	public List<Orders> storeOrders(int sno){
+		
+		return ordersRepo.findBySno(sno);
+	}
 }

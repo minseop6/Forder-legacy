@@ -129,8 +129,8 @@ public class MainConroller {
 
 		for(int i=0; i<pnos.length; i++) {
 			Orders info = new Orders();
-			Product product = new Product();
-			product.setPno(pnos[i]);
+			Product product = productService.product(pnos[i]);
+			info.setSno(product.getSno());
 			info.setProduct(product);
 			info.setAmount(amounts[i]);
 			info.setUno((int)session.getAttribute("uno"));

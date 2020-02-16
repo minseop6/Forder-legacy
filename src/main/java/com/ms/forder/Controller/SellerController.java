@@ -2,6 +2,7 @@ package com.ms.forder.Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ms.forder.Domain.Orders;
 import com.ms.forder.Domain.Product;
 import com.ms.forder.Domain.Store;
+import com.ms.forder.Domain.User;
 import com.ms.forder.Service.OrdersServices;
 import com.ms.forder.Service.ProductService;
 import com.ms.forder.Service.StoreService;
@@ -154,6 +157,17 @@ public class SellerController {
 		ModelAndView model = new ModelAndView();
 		if(session.getAttribute("id") != null) {
 			model.setViewName("seller/order");
+			
+			List<Orders> ordersList = ordersService.storeOrders(1);
+			List<User> userList = new ArrayList<User>();
+			for(int i=0; i<ordersList.size(); i++) {
+				User user = userService.user(ordersList.get(i).getUno());
+				userList.add(user);
+			}
+			
+			model.addObject("ordersList", ordersList);
+			model.addObject("userList", userList);
+			
 		}else {
 			model.setViewName("nologin");
 		}

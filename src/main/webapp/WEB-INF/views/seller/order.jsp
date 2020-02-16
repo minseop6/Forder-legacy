@@ -12,6 +12,12 @@
     <jsp:include page="include.jsp" />
 
     <h1>seller order</h1>
-
+    <c:forEach var="item" items="${ordersList}">
+      ${item.ono}
+      ${item.otime}
+    </c:forEach>
+    <c:forEach var="item" items="${userList}">
+      ${item.id}
+    </c:forEach>
   </body>
 </html>
