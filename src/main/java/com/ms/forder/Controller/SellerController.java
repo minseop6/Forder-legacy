@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -158,14 +159,19 @@ public class SellerController {
 		if(session.getAttribute("id") != null) {
 			model.setViewName("seller/order");
 			
-			List<Orders> ordersList = ordersService.storeOrders(1);
+			List<Orders> ordersList = ordersService.storeOrders((int)session.getAttribute("sno"));
+			List<Product> productList = new ArrayList<Product>();
 			List<User> userList = new ArrayList<User>();
 			for(int i=0; i<ordersList.size(); i++) {
+				Product product = productService.product(ordersList.get(i).getProduct().getPno());
+				productList.add(product);
+				
 				User user = userService.user(ordersList.get(i).getUno());
 				userList.add(user);
 			}
 			
 			model.addObject("ordersList", ordersList);
+			model.addObject("productList", productList);
 			model.addObject("userList", userList);
 			
 		}else {
@@ -173,5 +179,18 @@ public class SellerController {
 		}
 		
 		return model; 
+	}
+	
+	@PostMapping("/order")
+	@ResponseBody
+	public int order(@RequestParam int ono) {
+
+		//상품 준비 완료 알림
+		System.out.println(ono);
+		Orders info = ordersService.onoOrders(ono);
+		info.setAlarm(1);
+		ordersService.insertOrders(info);
+		
+		return ono;
 	}
 }

@@ -29,7 +29,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">위치</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="address" />
+          <input type="text" class="form-control" id="address" readonly />
           <input type="hidden" class="form-control" id="lat" name="lat" />
           <input type="hidden" class="form-control" id="lng" name="lng" />
         </div>

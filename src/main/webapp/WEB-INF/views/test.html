@@ -23,32 +23,45 @@
     </style>
   </head>
   <body>
-    <form>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">상품 이름</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="pname">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">가격</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="price">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>이미지 업로드</label>
-        <input type="file"  name="image">
-      </div>
-      <div class="form-group">
-        <label>On/Off</label>
-        <input type="checkbox" id="test" data-onstyle="success">
-      </div>
-      <button type="submit" class="btn btn-default">제출</button>
-    </form>
+    <table id="orders">
+      <thead>
+        <tr>
+          <th>주문번호</th>
+          <th>주문내역</th>
+          <th>주문시간</th>
+          <th>주문자</th>
+          <th>알림 발송</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>${ordersList[status.index].ono1}</td>
+            <td>${productList[status.index].pname1}</td>
+            <td>${ordersList[status.index].otime1}</td>
+            <td>${userList[status.index].id1}</td>
+            <td><button type="button" class="button">처리</button></td>
+          </tr>
+          <tr>
+            <td>${ordersList[status.index].ono2}</td>
+            <td>${productList[status.index].pname2} ${ordersList[status.index].amount}개</td>
+            <td>${ordersList[status.index].otime2}</td>
+            <td>${userList[status.index].id2}</td>
+            <td><button type="button" class="button">처리</button></td>
+          </tr>
+          <tr>
+            <td>${ordersList[status.index].ono3}</td>
+            <td>${productList[status.index].pname3} ${ordersList[status.index].amount}개</td>
+            <td>${ordersList[status.index].otime3}</td>
+            <td>${userList[status.index].id3}</td>
+            <td><button type="button" class="button">처리</button></td>
+          </tr>
+      </tbody>
+    </table>
   </body>
 </html>
 
 <script>
-$('#test').bootstrapToggle('off');
+$('.button').click(function(){
+  console.log($(this).parent().parent().children().first().text());
+})
 </script>

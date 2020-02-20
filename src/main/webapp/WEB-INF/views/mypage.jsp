@@ -89,7 +89,7 @@ $('#login').click(function(){
     container: '#kakao-login-btn',
     success: function(authObj) {
       Kakao.API.request({
-        url: '/v1/user/me',
+        url: '/v2/user/me',
         success: function(res) {
           console.log(res.id); //id 정보 출력
           console.log(res.properties.nickname); //닉네임 출력

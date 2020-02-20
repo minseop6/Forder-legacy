@@ -27,20 +27,20 @@ public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ono")
+	@Column(name="ono", updatable=false)
 	private Integer ono;
 	
-	@Column(name="uno")
+	@Column(name="uno", updatable=false)
 	private int uno;
 	
-	@Column(name="sno")
+	@Column(name="sno", updatable=false)
 	private int sno;
 	
 	@CreationTimestamp
 	@Column(name="otime", updatable=false)
 	private LocalDateTime otime;
 	
-	@Column(name="amount")
+	@Column(name="amount", updatable=false)
 	private int amount;
 	
 	@Column(name="alarm")
@@ -50,7 +50,7 @@ public class Orders {
 	private int complete;
 	
 	@ManyToOne
-	@JoinColumn(name="product_pno")
+	@JoinColumn(name="product_pno", updatable=false)
 	private Product product;
 	
 }

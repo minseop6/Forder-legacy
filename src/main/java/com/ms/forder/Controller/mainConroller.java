@@ -209,6 +209,8 @@ public class MainConroller {
 			User user = userService.user(id);
 			session.setAttribute("uno", user.getUno());
 			if(user.getPower() == 2) {
+				Store store = storeService.storeInfoByUno(user.getUno());
+				session.setAttribute("sno", store.getSno());
 				return "seller";
 			}
 		

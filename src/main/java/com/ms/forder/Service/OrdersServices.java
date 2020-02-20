@@ -20,6 +20,11 @@ public class OrdersServices {
 		ordersRepo.saveAndFlush(info);
 	}
 	
+	public Orders onoOrders(int ono) {
+		
+		return ordersRepo.getOne(ono);
+	}
+	
 	public List<Orders> userOrders(int uno){
 		
 		return ordersRepo.findByUnoAndAlarmAndComplete(uno, 1, 0);
