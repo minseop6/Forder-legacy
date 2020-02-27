@@ -16,13 +16,33 @@
   <body>
     <jsp:include page="include.jsp" />
 
-    <c:forEach var="item" items="${list}">
-      <div class="item">
-        <label>${item.product.pname}</label>
-        <label>${item.amount}개</label>
-        <label>${item.product.price}원</label><br>
-        <label>${item.otime}</label>
-      </div>
-    </c:forEach>
+    <table>
+      <thead>
+        <tr>
+          <th>상품명</th>
+          <th>수량</th>
+          <th>가격</th>
+          <th>주문시간</th>
+          <th>수령</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach var="item" items="${list}">
+          <c:if test="${item.alarm eq 1 and item.complete eq 0}">
+            <form action="alarm" method="POST">
+                <input type="hidden" name="_method" value="PUT"/>
+                <input type="hidden" name="ono" value="${item.ono}"/>
+                <tr>
+                  <td>${item.product.pname}</td>
+                  <td>${item.amount}개</td>
+                  <td>${item.product.price}원</td>
+                  <td>${item.otime}</td>
+                  <td><input type="submit" value="수령"></td>
+                </tr>
+            </form>
+          </c:if>
+        </c:forEach>
+      </tbody>
+    </table>
   </body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,6 +63,19 @@ public class MainConroller {
 		}
 		
 		return model;
+	}
+	
+	@PutMapping("/alarm")
+	public String alarm(@RequestParam int ono) {
+		
+		System.out.println(ono);
+		Orders info = new Orders();
+		info.setOno(ono);
+		info.setAlarm(1);
+		info.setComplete(1);
+		ordersService.insertOrders(info);
+		
+		return "redirect:/forder/alarm";
 	}
 	
 	@GetMapping(value="/map", produces="text/plain;charset=UTF-8")

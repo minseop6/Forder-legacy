@@ -34,21 +34,21 @@
         </tr>
       </thead>
       <tbody>
-          <tr>
+          <tr id="1">
             <td>${ordersList[status.index].ono1}</td>
             <td>${productList[status.index].pname1}</td>
             <td>${ordersList[status.index].otime1}</td>
             <td>${userList[status.index].id1}</td>
             <td><button type="button" class="button">처리</button></td>
           </tr>
-          <tr>
+          <tr id="2">
             <td>${ordersList[status.index].ono2}</td>
             <td>${productList[status.index].pname2} ${ordersList[status.index].amount}개</td>
             <td>${ordersList[status.index].otime2}</td>
             <td>${userList[status.index].id2}</td>
             <td><button type="button" class="button">처리</button></td>
           </tr>
-          <tr>
+          <tr id="3">
             <td>${ordersList[status.index].ono3}</td>
             <td>${productList[status.index].pname3} ${ordersList[status.index].amount}개</td>
             <td>${ordersList[status.index].otime3}</td>
@@ -63,5 +63,6 @@
 <script>
 $('.button').click(function(){
   console.log($(this).parent().parent().children().first().text());
+  console.log($('#3').children().last().children('.button').text());
 })
 </script>

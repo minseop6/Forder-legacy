@@ -42,7 +42,9 @@
     </header>
     <div id="footer">
       <a href="/forder"><img class="icon" src="/static/img/icon-home.png"></a>
-      <a href="/forder/alarm"><img class="icon" src="/static/img/icon-alarm.png"></a>
+      <a href="/forder/alarm">
+        <img class="icon" src="/static/img/icon-alarm.png">
+      </a>
       <a href="/forder/map"><img class="icon" src="/static/img/icon-map.png"></a>
       <a href="/forder/like"><img class="icon" src="/static/img/icon-like.png"></a>
       <a href="/forder/mypage"><img class="icon" src="/static/img/icon-user.png"></a>

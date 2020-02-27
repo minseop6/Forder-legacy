@@ -29,13 +29,20 @@
       </thead>
       <tbody>
         <c:forEach var="item" items="${ordersList}" varStatus="status">
-          <c:if test="${ordersList[status.index].alarm eq 0}">
+          <c:if test="${ordersList[status.index].complete eq 0}">
             <tr id="${ordersList[status.index].ono}">
               <td>${ordersList[status.index].ono}</td>
               <td>${productList[status.index].pname} ${ordersList[status.index].amount}개</td>
               <td>${ordersList[status.index].otime}</td>
               <td>${userList[status.index].id}</td>
-              <td><button type="button" class="button">처리</button></td>
+              <td>
+                <c:if test="${ordersList[status.index].alarm eq 0}">
+                  <button type="button" class="button">처리</button>
+                </c:if>
+                <c:if test="${ordersList[status.index].alarm eq 1}">
+                  <button type="button" disabled>수령 대기중</button>
+                </c:if>
+              </td>
             </tr>
           </c:if>
         </c:forEach>
@@ -46,7 +53,6 @@
 
 <script>
   $('.button').click(function(){
-    console.log($(this).parent().parent().children().first().text());
     var ono = $(this).parent().parent().children().first().text();
     $.ajax({
       type: "POST",
